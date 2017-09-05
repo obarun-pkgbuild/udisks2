@@ -3,27 +3,22 @@
 # 						Maintainer: Ionut Biru <ibiru@archlinux.org>
 
 pkgname=udisks2
-pkgver=2.7.1
-pkgrel=3
+pkgver=2.7.3
+pkgrel=2
 pkgdesc="Disk Management Service, version 2"
 arch=('x86_64')
 url="https://www.freedesktop.org/wiki/Software/udisks"
 license=('GPL2')
-depends=('polkit' 'libatasmart' 'libgudev' 'libblockdev')
-makedepends=('docbook-xsl' 'gobject-introspection' 'gnome-common' 'intltool' 'parted' 'libiscsi' 'which' 'gettext')
+depends=('polkit' 'libatasmart' 'libgudev' 'libblockdev' 'dbus')
+makedepends=('docbook-xsl' 'gobject-introspection' 'gnome-common' 'intltool' 'parted' 'which' 'gettext' 'gtk-doc' 'libxslt') # 'open-iscsi' 
 optdepends=('gptfdisk: GUID partition table support'
             'ntfs-3g: NTFS filesystem management support'
             'dosfstools: VFAT filesystem management support'
             'libiscsi: iSCSI support')
+#commit=c7ef3361a1bc45e43a155640f7b80b55349a1339 # tag 2.7.3
 source=("https://github.com/storaged-project/udisks/archive/udisks-$pkgver.tar.gz")
-sha512sums=('1f6830bcea0d26aeb63a54437f92756e2fecc35953d985469b01067774bed8d7bbff1edb2f09a451ae1929d299c6015a4c0aea3b0dc01cc36bd4759685dcf55b')
+md5sums=('e5050857b78738742d08a6a6c7f254f5')
 validpgpkeys=('6DD4217456569BA711566AC7F06E8FDE7B45DAAC') # Eric Vidal
-
-prepare() {
-  sed -e 's/AC_MSG_ERROR(\[libstoragemgmt/AC_MSG_WARN([libstoragemgmt/' \
-      -e 's/AC_MSG_ERROR(\[libconfig/AC_MSG_WARN([libconfig/' \
-      -i udisks-udisks-$pkgver/configure.ac
-}
 
 build() {
   cd udisks-udisks-$pkgver
@@ -33,10 +28,7 @@ build() {
 				--libexecdir=/usr/lib \
 				--localstatedir=/var \
 				--disable-static \
-				--disable-systemd \
-				--enable-compile-warnings=minimum \
-				--localstatedir=/var \
-				--enable-available-modules
+				--enable-gtk-doc-html=yes
 	make
 }
 
@@ -50,3 +42,4 @@ package() {
   make DESTDIR="$pkgdir" install \
     bash_completiondir=/usr/share/bash-completion/completions
 }
+#gtk-doc 1.25
