@@ -10,7 +10,7 @@ arch=('x86_64')
 url="https://www.freedesktop.org/wiki/Software/udisks"
 license=('GPL2')
 depends=('polkit' 'libatasmart' 'libgudev' 'libblockdev' 'dbus')
-makedepends=('docbook-xsl' 'gobject-introspection' 'gnome-common' 'intltool' 'parted' 'which' 'gettext' 'gtk-doc' 'libxslt') # 'open-iscsi' 
+makedepends=('docbook-xsl' 'gobject-introspection' 'gnome-common' 'intltool' 'parted' 'which' 'gettext' 'gtk-doc' 'libxslt' 'glib2') # 'open-iscsi' 
 optdepends=('gptfdisk: GUID partition table support'
             'ntfs-3g: NTFS filesystem management support'
             'dosfstools: VFAT filesystem management support'
@@ -21,7 +21,7 @@ md5sums=('a579c4b7e151fc33e0a97fb1db80eed5')
 validpgpkeys=('6DD4217456569BA711566AC7F06E8FDE7B45DAAC') # Eric Vidal
 
 build() {
-	export PYTHONPATH="/usr/share/glib-2.0"
+  export PYTHONPATH="/usr/share/glib-2.0"
   cd udisks-udisks-$pkgver
   ./autogen.sh 	--prefix=/usr \
 				--sysconfdir=/etc \
@@ -43,4 +43,4 @@ package() {
   make DESTDIR="$pkgdir" install \
     bash_completiondir=/usr/share/bash-completion/completions
 }
-#gtk-doc 1.25
+
