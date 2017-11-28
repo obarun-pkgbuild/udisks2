@@ -21,6 +21,7 @@ md5sums=('a579c4b7e151fc33e0a97fb1db80eed5')
 validpgpkeys=('6DD4217456569BA711566AC7F06E8FDE7B45DAAC') # Eric Vidal
 
 build() {
+	export PYTHONPATH="/usr/share/glib-2.0"
   cd udisks-udisks-$pkgver
   ./autogen.sh 	--prefix=/usr \
 				--sysconfdir=/etc \
