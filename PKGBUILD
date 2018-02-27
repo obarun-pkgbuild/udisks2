@@ -3,7 +3,7 @@
 # 						Maintainer: Ionut Biru <ibiru@archlinux.org>
 
 pkgname=udisks2
-pkgver=2.7.5
+pkgver=2.7.6
 pkgrel=2
 pkgdesc="Disk Management Service, version 2"
 arch=('x86_64')
@@ -17,7 +17,7 @@ optdepends=('gptfdisk: GUID partition table support'
             'libiscsi: iSCSI support')
 #commit=c7ef3361a1bc45e43a155640f7b80b55349a1339 # tag 2.7.3
 source=("https://github.com/storaged-project/udisks/archive/udisks-$pkgver.tar.gz")
-md5sums=('baf9e4206fb5e0c1e274db0fb4cf51bb')
+md5sums=('7ba88d8ddb899c09e1ae6a66d4ca2dce')
 validpgpkeys=('6DD4217456569BA711566AC7F06E8FDE7B45DAAC') # Eric Vidal
 
 build() {
